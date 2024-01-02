@@ -1,5 +1,7 @@
 package com.escolago.library.dto;
 
+
+import com.escolago.asset.AssetDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,4 +16,5 @@ public class CopyDTO {
     private String link;
     private LocalDate date_added;
     private LoanDTO loan;
+    private AssetDTO asset_id;
 }

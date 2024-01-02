@@ -2,6 +2,7 @@ package com.escolago.library.controller;
 
 
 import com.escolago.library.dto.BookInfoDTO;
+import com.escolago.library.dto.CopyDTO;
 import com.escolago.library.mappers.MapStructMapper;
 import com.escolago.library.model.BookInfo;
 import com.escolago.library.repository.BookInfoRepository;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +56,12 @@ public class BookController {
     @PutMapping("/{id}")
     ResponseEntity<?> update(@PathVariable Long id, @RequestBody BookInfoDTO updateDto) {
         return libraryService.replaceBookInfo(id,updateDto).map(c-> ResponseEntity.noContent().build()).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{id}/addcopy")
+    @ResponseStatus(HttpStatus.CREATED)
+    ResponseEntity<?> addCopys(@PathVariable Long id, @RequestBody List<CopyDTO> copies){
+        return ResponseEntity.ok(this.libraryService.saveNewCopies(id,copies));
     }
 
 }

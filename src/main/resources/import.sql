@@ -1,4 +1,7 @@
 
+INSERT INTO "modules"(name,link) VALUES ('biblioteka','/library');
+INSERT INTO "modules"(name,link) VALUES ('świetlica','/croom');
+
 INSERT INTO "genre"(name,english_name) VALUES ('liryka','lyric');
 INSERT INTO "genre"(name,english_name) VALUES ('elegia','elegy');
 INSERT INTO "genre"(name,english_name) VALUES ('hymn','hymn');
@@ -92,22 +95,33 @@ insert into "users"(login, name, surname, role) values ('BibAneta','Aneta','Bibl
 insert into "users"(login, name, surname, role) values ('LanBartosz','Bartosz','Langare','{"role": {"job":"wychowawca świetlicy", "admin":false, "module":[2]}}');
 insert into "users"(login, name, surname, role) values ('user','Krzysztof','Użyteczny','{"role": {"job":"student", "admin":false, "module":[]}}');
 
+
+insert into asset (id) values (default);
+insert into asset (id) values (default);
+insert into asset (id) values (default);
+insert into asset (id) values (default);
+insert into asset (id) values (default);
+insert into asset (id) values (default);
+
+
 Insert into "author"(name) values ('Michael Dobbs');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 insert into "authors_of_book"(id_book, id_author) values (1,1);
 Insert into "generes_of_book"(book_id,genere_id) values(1,53);
 Insert into "generes_of_book"(book_id,genere_id) values(1,13);
 Insert into "generes_of_book"(book_id,genere_id) values(1,19);
-insert into "book_copy"(book_id, is_rented, date_added) values (1,false,'2020-01-01');
-insert into "book_copy"(book_id, is_rented, date_added) values (1,false,'2020-01-01');
-insert into "book_copy"(book_id, is_rented, date_added) values (1,false,'2020-01-01');
-insert into "book_copy"(book_id, is_rented, date_added) values (1,false,'2020-01-01');
-insert into "book_copy"(book_id, is_rented, date_added) values (1,false,'2020-01-01');
-insert into "book_copy"(book_id, is_rented, date_added) values (1,false,'2020-01-01');
+insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',1);
+insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',2);
+insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',3);
+insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',4);
+insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',5);
+insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',6);
 insert into "loans"(user_id, date_of_rental) values (2,'2020-03-03');
 UPDATE "book_copy" SET  is_rented = true ,"loan_id"=1  WHERE id = 6;
 
 
+
+
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
@@ -122,3 +136,4 @@ Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, co
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
+

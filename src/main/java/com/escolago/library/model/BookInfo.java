@@ -1,5 +1,6 @@
 package com.escolago.library.model;
 
+import com.escolago.library.dto.CopyDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +51,12 @@ public class BookInfo {
     @JoinColumn(name = "book_id")
     private List<BookCopy> copies = new ArrayList<>();
 
+   public void addCopy(BookCopy copy){
+      copies.add(copy);
+   }
 
+   public void addCopies(List<BookCopy> newCopies){
+      newCopies.forEach(this::addCopy);
+   }
 
 }
