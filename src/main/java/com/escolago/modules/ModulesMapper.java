@@ -13,9 +13,7 @@ public interface ModulesMapper {
     ModulesDTO moduleToDTO(Modules module);
     Modules DTOtoModule(ModulesDTO module);
 
-    @Mapping(source = "link",target = "link")
-    @Mapping(source = "id",target = "id")
-    @Mapping(source = "name",target = "name")
+
     List<ModulesDTO> modulesToDTO(List<Modules> m);
     List<Modules> DTOsToModules(List<ModulesDTO> m);
 }

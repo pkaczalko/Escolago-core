@@ -21,4 +21,13 @@ public class Loan {
     @JoinColumn(name = "user_id")
     private User user;
 
+
+    public Loan(BookCopy copy, User user) {
+        this.dateOfRental = LocalDate.now();
+        this.copy = copy;
+        this.user = user;
+    }
+
+    public Loan() {
+    }
 }

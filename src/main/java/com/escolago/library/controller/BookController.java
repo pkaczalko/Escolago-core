@@ -64,4 +64,16 @@ public class BookController {
         return ResponseEntity.ok(this.libraryService.saveNewCopies(id,copies));
     }
 
+
+
+    @PutMapping("/rent/{user_id}")
+    ResponseEntity<?> rentBook(@PathVariable Long user_id, @RequestBody CopyDTO copy){
+        return ResponseEntity.ok(this.libraryService.rentACopy(user_id,copy));
+    }
+
+
+    @PutMapping("/return/{loan_id}")
+    ResponseEntity<?> returnBook(@PathVariable Integer loan_id,@RequestBody CopyDTO copy){
+        return ResponseEntity.ok(this.libraryService.returnCopy(loan_id,copy));
+    }
 }

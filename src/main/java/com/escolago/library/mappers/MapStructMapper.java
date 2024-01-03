@@ -34,6 +34,7 @@ public interface MapStructMapper {
 
     List<CopyDTO> booksCopiesToBooksCopiesDTO(List<BookCopy> copies);
 
+
     BookCopy copyDTOtoCopy(CopyDTO c);
 
 

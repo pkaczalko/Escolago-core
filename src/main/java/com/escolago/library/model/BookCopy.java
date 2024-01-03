@@ -24,5 +24,15 @@ public class BookCopy {
     @JoinColumn(name = "asset_id", unique = true,nullable = false)
     private Asset asset_id;
 
-
+    @Override
+    public String toString() {
+        return "BookCopy{" +
+                "id=" + id +
+                ", is_rented=" + is_rented +
+                ", link='" + link + '\'' +
+                ", date_added=" + date_added +
+                ", loan=" + loan +
+                ", asset_id=" + asset_id +
+                '}';
+    }
 }

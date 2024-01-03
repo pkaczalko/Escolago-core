@@ -8,8 +8,12 @@ import com.escolago.library.dto.PagedCatalogueResponseDTO;
 import com.escolago.library.mappers.MapStructMapper;
 import com.escolago.library.model.BookCopy;
 import com.escolago.library.model.BookInfo;
+import com.escolago.library.model.Loan;
 import com.escolago.library.repository.BookCopyRepository;
 import com.escolago.library.repository.BookInfoRepository;
+import com.escolago.library.repository.LoanRepository;
+import com.escolago.user.User;
+import com.escolago.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,17 +28,23 @@ public class LibraryService {
     private final BookInfoRepository bookInfoRepository;
     private final BookCopyRepository bookCopyRepository;
     private final AssetRespository assetRespository;
+    private final LoanRepository loanRepository;
+    private final UserRepository userRepository;
 @Autowired
     public LibraryService(
             MapStructMapper mapstructMapper,
             BookInfoRepository bookInfoRepository,
             BookCopyRepository bookCopyRepository,
-            AssetRespository assetRespository
+            AssetRespository assetRespository,
+            LoanRepository loanRepository,
+            UserRepository userRepository
     ){
         this.mapstructMapper = mapstructMapper;
         this.bookInfoRepository = bookInfoRepository;
         this.bookCopyRepository = bookCopyRepository;
         this.assetRespository = assetRespository;
+        this.loanRepository = loanRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -90,5 +100,28 @@ public class LibraryService {
         return mapstructMapper.booksCopiesToBooksCopiesDTO(savedCopies);
     }
 
+
+
+    public CopyDTO rentACopy(Long user_id,CopyDTO copy){
+        BookCopy copyToRent = mapstructMapper.copyDTOtoCopy(copy);
+
+        User userData = this.userRepository.findById(user_id).get();
+        Loan loanInfo = new Loan(copyToRent,userData);
+        this.loanRepository.save(loanInfo);
+        copyToRent.set_rented(true);
+        copyToRent.setLoan(loanInfo);
+        return mapstructMapper.bookCopyToBookCopyDTO(bookCopyRepository.save(copyToRent));
+    }
+
+
+    public CopyDTO returnCopy(Integer loan_id,CopyDTO copy){
+        copy.setLoan(null);
+        copy.set_rented(false);
+        BookCopy copyToReturn = mapstructMapper.copyDTOtoCopy(copy);
+        bookCopyRepository.save(copyToReturn);
+        loanRepository.deleteById(loan_id);
+
+        return mapstructMapper.bookCopyToBookCopyDTO(copyToReturn);
+    }
 
 }
