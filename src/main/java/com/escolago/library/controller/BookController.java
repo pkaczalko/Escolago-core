@@ -8,6 +8,7 @@ import com.escolago.library.model.BookInfo;
 import com.escolago.library.repository.BookInfoRepository;
 import com.escolago.library.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

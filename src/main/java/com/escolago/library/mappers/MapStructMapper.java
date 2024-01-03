@@ -61,4 +61,6 @@ public interface MapStructMapper {
     @Mapping(ignore = true, target = "login")
     @Mapping(ignore = true, target = "hash")
     User userDTOtoUser(UserDTO userDTO);
+
+    UserDTO userToDTO(User u);
 }
