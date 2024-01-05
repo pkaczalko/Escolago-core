@@ -5,6 +5,8 @@ import com.escolago.asset.Asset;
 import com.escolago.asset.AssetDTO;
 import com.escolago.library.dto.*;
 import com.escolago.library.model.*;
+import com.escolago.modules.Modules;
+import com.escolago.modules.ModulesDTO;
 import com.escolago.user.User;
 import com.escolago.user.UserDTO;
 import org.mapstruct.InjectionStrategy;
@@ -46,6 +48,8 @@ public interface MapStructMapper {
 
     LoanDTO loanToLoanDTO(Loan loan);
 
+    Loan DtoToLoan(LoanDTO l);
+
     List<LoanDTO> loansToLoansDTO(List<Loan> loans);
 
     BookInfoShortDTO bookInfoToShortDTO(BookInfo info);
@@ -55,6 +59,8 @@ public interface MapStructMapper {
     PagedCatalogueResponseDTO createCatalogueResponse(List<BookInfoShortDTO> catalogue,long totalCount);
 
     AssetDTO assetToAssetDTO(Asset a);
+
+    List<ModulesDTO> modulesToDTO(List<Modules> m);
 
     @Mapping(target = "borrowedBooks", ignore = true)
     @Mapping(ignore = true, target = "role")

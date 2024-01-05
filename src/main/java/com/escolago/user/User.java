@@ -28,8 +28,7 @@ public class User {
     private String login;
     private String hash;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(fetch=FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<Loan> borrowedBooks;
 
 }

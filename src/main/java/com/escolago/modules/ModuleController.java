@@ -1,5 +1,6 @@
 package com.escolago.modules;
 
+import com.escolago.library.mappers.MapStructMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +12,8 @@ import java.util.List;
 public class ModuleController {
 
     ModuleRepository moduleRepository;
-    ModulesMapper mapper;
-    ModuleController(ModuleRepository moduleRepository, ModulesMapper mapper){
+    MapStructMapper mapper;
+    ModuleController(ModuleRepository moduleRepository, MapStructMapper mapper){
         this.moduleRepository = moduleRepository;
         this.mapper = mapper;
     }
@@ -21,7 +22,7 @@ public class ModuleController {
     ResponseEntity<?> getModules(){
         return ResponseEntity.ok(
                 mapper.modulesToDTO(
-                        (List<Modules>) this.moduleRepository.findAll()
+                         this.moduleRepository.findAll()
                 ));
     }
 

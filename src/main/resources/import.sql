@@ -1,6 +1,6 @@
 
-INSERT INTO "modules"(name,link) VALUES ('biblioteka','/library');
-INSERT INTO "modules"(name,link) VALUES ('świetlica','/croom');
+INSERT INTO "modules"(name,link) VALUES ('Biblioteka','/library');
+INSERT INTO "modules"(name,link) VALUES ('Świetlica','/croom');
 
 INSERT INTO "genre"(name,english_name) VALUES ('liryka','lyric');
 INSERT INTO "genre"(name,english_name) VALUES ('elegia','elegy');

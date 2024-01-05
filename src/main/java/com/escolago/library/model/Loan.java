@@ -1,9 +1,11 @@
 package com.escolago.library.model;
 
 import com.escolago.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 @Getter
@@ -15,10 +17,12 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate dateOfRental;
-    @OneToOne(mappedBy = "loan" )
+    @OneToOne(mappedBy = "loan",fetch=FetchType.LAZY,cascade = CascadeType.MERGE)
     private BookCopy copy;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @ToString.Exclude
+    @JsonBackReference
     private User user;
 
 

@@ -1,9 +1,11 @@
 package com.escolago.library.controller;
 
 
+import com.escolago.library.Exceptions.BookAlreadyExistsException;
 import com.escolago.library.dto.BookInfoDTO;
 import com.escolago.library.dto.CopyDTO;
 import com.escolago.library.mappers.MapStructMapper;
+import com.escolago.library.model.BookCopy;
 import com.escolago.library.model.BookInfo;
 import com.escolago.library.repository.BookInfoRepository;
 import com.escolago.library.service.LibraryService;
@@ -69,7 +71,12 @@ public class BookController {
 
     @PutMapping("/rent/{user_id}")
     ResponseEntity<?> rentBook(@PathVariable Long user_id, @RequestBody CopyDTO copy){
-        return ResponseEntity.ok(this.libraryService.rentACopy(user_id,copy));
+        CopyDTO result = this.libraryService.rentACopy(user_id,copy);
+        if(result == null){
+            return ResponseEntity.notFound().build();
+        }else{
+        return ResponseEntity.ok(result);
+        }
     }
 
 
@@ -77,4 +84,40 @@ public class BookController {
     ResponseEntity<?> returnBook(@PathVariable Integer loan_id,@RequestBody CopyDTO copy){
         return ResponseEntity.ok(this.libraryService.returnCopy(loan_id,copy));
     }
+
+
+    @DeleteMapping("/copy/delete/{copy_id}")
+    ResponseEntity<?> deleteCopy(@PathVariable Long copy_id){
+        this.libraryService.deleteCopy(copy_id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/renals/{id}")
+    ResponseEntity<?> getRentals(@PathVariable Long id){
+       return ResponseEntity.ok(this.libraryService.rentals(id));
+    }
+
+
+    @PostMapping("/add")
+    ResponseEntity<?> addBook(@RequestBody BookInfoDTO book) {
+        try {
+            BookInfoDTO savedBook = this.libraryService.addBook(book);
+            return ResponseEntity.created(ServletUriComponentsBuilder
+                            .fromCurrentRequest()
+                            .path("/{id}")
+                            .buildAndExpand(savedBook.getId())
+                            .toUri()
+                    )
+                    .body(savedBook);
+        }catch (BookAlreadyExistsException e){
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    ResponseEntity<?> deleteBook(@PathVariable Long id){
+        this.bookInfoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
