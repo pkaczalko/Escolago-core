@@ -1,6 +1,6 @@
 package com.escolago.library.controller;
 
-import com.escolago.library.mappers.MapStructMapper;
+import com.escolago.MapStructMapper;
 import com.escolago.library.model.Genre;
 import com.escolago.library.repository.GenreRepository;
 import org.springframework.http.ResponseEntity;

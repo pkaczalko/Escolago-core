@@ -96,12 +96,12 @@ insert into "users"(login, name, surname, role) values ('LanBartosz','Bartosz','
 insert into "users"(login, name, surname, role) values ('user','Krzysztof','Użyteczny','{"role": {"job":"student", "admin":false, "module":[]}}');
 
 
-insert into asset (id) values (default);
-insert into asset (id) values (default);
-insert into asset (id) values (default);
-insert into asset (id) values (default);
-insert into asset (id) values (default);
-insert into asset (id) values (default);
+insert into asset (module_id) values (1);
+insert into asset (module_id) values (1);
+insert into asset (module_id) values (1);
+insert into asset (module_id) values (1);
+insert into asset (module_id) values (1);
+insert into asset (module_id) values (1);
 
 
 Insert into "author"(name) values ('Michael Dobbs');
@@ -136,4 +136,34 @@ Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, co
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
+
+
+insert into "item_category"(name) values ('gra planszowa');
+insert into "item_category"(name) values ('książka');
+insert into "item_category"(name) values ('film');
+insert into "item_category"(name) values ('kość');
+
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',7,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',8,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',9,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',10,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',11,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',12,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+
+insert into item_category_items(categories_id,items_id) values (1,1);
+insert into item_category_items(categories_id,items_id) values (1,2);
+insert into item_category_items(categories_id,items_id) values (1,3);
+insert into item_category_items(categories_id,items_id) values (1,4);
+insert into item_category_items(categories_id,items_id) values (1,5);
+insert into item_category_items(categories_id,items_id) values (1,6);
+insert into item_category_items(categories_id,items_id) values (3,2);
+insert into item_category_items(categories_id,items_id) values (2,5);
+insert into item_category_items(categories_id,items_id) values (2,3);
 

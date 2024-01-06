@@ -1,14 +1,12 @@
 package com.escolago.library.controller;
 
-import com.escolago.library.mappers.MapStructMapper;
+import com.escolago.MapStructMapper;
 import com.escolago.library.model.Author;
 import com.escolago.library.repository.AuthorRepository;
-import jakarta.servlet.annotation.HttpMethodConstraint;
 import org.apache.commons.text.WordUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

@@ -4,19 +4,16 @@ package com.escolago.library.controller;
 import com.escolago.library.Exceptions.BookAlreadyExistsException;
 import com.escolago.library.dto.BookInfoDTO;
 import com.escolago.library.dto.CopyDTO;
-import com.escolago.library.mappers.MapStructMapper;
-import com.escolago.library.model.BookCopy;
+import com.escolago.MapStructMapper;
 import com.escolago.library.model.BookInfo;
 import com.escolago.library.repository.BookInfoRepository;
 import com.escolago.library.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +36,7 @@ public class BookController {
     @GetMapping
     public ResponseEntity<?> getAll(){
         return new ResponseEntity<>(
-                mapstructMapper.booksInfoToBooksInfoDTO(
+                mapstructMapper.bookInfoToBookInfoDTO(
                         (List<BookInfo>) bookInfoRepository.findAll()
                 ),
                 HttpStatus.OK

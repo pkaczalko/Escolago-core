@@ -1,11 +1,12 @@
 package com.escolago.library.model;
 
 import com.escolago.asset.Asset;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 @Getter
@@ -16,9 +17,12 @@ public class BookCopy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private boolean is_rented;
+    @Column(name="is_rented")
+    @JsonProperty("rented")
+    private boolean isRented;
     private String link;
-    private LocalDate date_added;
+    @Column(name="date_added")
+    private LocalDate dateAdded;
 
     @OneToOne
     @JsonBackReference
@@ -26,7 +30,11 @@ public class BookCopy {
     private Loan loan;
 
     @OneToOne
+    @JsonBackReference
     @JoinColumn(name = "asset_id", unique = true,nullable = false)
-    private Asset asset_id;
+    private Asset assetId;
 
+    @ManyToOne()
+    @JoinColumn(name="book_id")
+    private BookInfo bookInfo;
 }

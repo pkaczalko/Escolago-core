@@ -8,5 +8,5 @@ import lombok.Setter;
 public class ModulesDTO {
     private int id;
     private String name;
-    private  String link;
+    private String link;
 }

@@ -6,9 +6,10 @@ import com.escolago.library.Exceptions.BookAlreadyExistsException;
 import com.escolago.library.dto.BookInfoDTO;
 import com.escolago.library.dto.CopyDTO;
 import com.escolago.library.dto.PagedCatalogueResponseDTO;
-import com.escolago.library.mappers.MapStructMapper;
+import com.escolago.MapStructMapper;
 import com.escolago.library.model.*;
 import com.escolago.library.repository.*;
+import com.escolago.modules.ModuleRepository;
 import com.escolago.user.User;
 import com.escolago.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +30,7 @@ public class LibraryService {
     private final UserRepository userRepository;
     private final GenreRepository genreRepository;
     private final AuthorRepository authorRepository;
+    private final ModuleRepository moduleRepository;
 @Autowired
     public LibraryService(
             MapStructMapper mapstructMapper,
@@ -39,7 +40,8 @@ public class LibraryService {
             LoanRepository loanRepository,
             UserRepository userRepository,
             GenreRepository genreRepository,
-            AuthorRepository authorRepository
+            AuthorRepository authorRepository,
+            ModuleRepository moduleRepository
     ){
         this.mapstructMapper = mapstructMapper;
         this.bookInfoRepository = bookInfoRepository;
@@ -49,12 +51,47 @@ public class LibraryService {
         this.userRepository = userRepository;
         this.genreRepository = genreRepository;
         this.authorRepository = authorRepository;
+        this.moduleRepository = moduleRepository;
     }
 
 
+//    public List<BookInfo> getPageOfCatalogue(Pageable pageRequest, String name) {
+//            long id = -1L;
+//        if (!name.isBlank()) {
+//            try {
+//                id = Long.parseLong(name);
+//            } catch (NumberFormatException ignored){}
+//        }
+//            return this.bookInfoRepository.findAllByAuthors_nameContainingIgnoreCaseOrBookTitleContainingIgnoreCaseOrIsbnContainingIgnoreCaseOrGenres_nameContainingIgnoreCaseOrGenres_englishNameContainingIgnoreCaseOrCopies_assetId_idEquals(name, name, name, name, name, id);
+//    }
 
-    public PagedCatalogueResponseDTO getPageOfCatalogue(Pageable pageRequest){
-        Page<BookInfo> catalogue = bookInfoRepository.findAll(pageRequest);
+    public PagedCatalogueResponseDTO getPageOfCatalogue(Pageable pageRequest,String name,String action){
+        Page<BookInfo> catalogue;
+        switch (action){
+            case "asset": {
+                long id = -1L;
+                try {
+                    id = Long.parseLong(name);
+                    } catch (NumberFormatException ignored) {
+                    } finally {
+                        catalogue = this.bookInfoRepository.findAllByCopies_assetId_id(id, pageRequest);
+                        }
+            }break;
+
+            case "author":
+            case "genre":{
+                catalogue = this.bookInfoRepository.findAllByAuthors_nameContainingIgnoreCaseOrGenres_nameContainingIgnoreCase(name,name, pageRequest);
+            }break;
+            case "title":
+            case "isbn":
+                catalogue = this.bookInfoRepository.findAllByBookTitleContainingIgnoreCaseOrIsbnContainingIgnoreCase(name,name,pageRequest);
+            break;
+            default:{
+                catalogue = this.bookInfoRepository.findAll(pageRequest);
+            }break;
+        }
+
+
         PagedCatalogueResponseDTO response = new PagedCatalogueResponseDTO();
         response.setTotalCount(catalogue.getTotalElements());
         response.setCatalogue(mapstructMapper.booksInfoToShortDTO(catalogue.getContent()));
@@ -84,13 +121,14 @@ public class LibraryService {
 
     public void assignAssetId(BookCopy copy){
         Asset newA = new Asset();
+        newA.setModule(this.moduleRepository.findById(1).get());
         assetRespository.save(newA);
-        copy.setAsset_id(newA);
+        copy.setAssetId(newA);
     }
 
 
     public List<CopyDTO> saveNewCopies(long id,List<CopyDTO> list){
-    List<BookCopy> copiesToSave = mapstructMapper.copiesDTOtoCopies(list);
+    List<BookCopy> copiesToSave = mapstructMapper.copyDTOtoCopy(list);
     copiesToSave.forEach(this::assignAssetId);
     List<BookCopy> savedCopies = (List<BookCopy>) bookCopyRepository.saveAll(copiesToSave);
     this.bookInfoRepository.findById(id).ifPresent(  book ->{
@@ -99,7 +137,7 @@ public class LibraryService {
             }
 
     );
-        return mapstructMapper.booksCopiesToBooksCopiesDTO(savedCopies);
+        return mapstructMapper.bookCopyToBookCopyDTO(savedCopies);
     }
 
 
@@ -113,7 +151,7 @@ public class LibraryService {
 
         Loan loanInfo = new Loan(copyToRent,userData);
         this.loanRepository.save(loanInfo);
-        copyToRent.set_rented(true);
+        copyToRent.setRented(true);
         copyToRent.setLoan(loanInfo);
         return mapstructMapper.bookCopyToBookCopyDTO(bookCopyRepository.save(copyToRent));
     }

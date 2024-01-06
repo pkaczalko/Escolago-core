@@ -1,6 +1,6 @@
 package com.escolago.library.model;
 
-import com.escolago.library.dto.CopyDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,37 +18,32 @@ public class BookInfo {
     private long id;
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.ALL)
  @JoinTable(name = "authors_of_book",
          joinColumns = @JoinColumn(name = "id_book", referencedColumnName = "id"),
          inverseJoinColumns = @JoinColumn(name = "id_author", referencedColumnName = "id")
  )
     private List<Author> authors = new ArrayList<>();
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "generes_of_book",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "genere_id", referencedColumnName = "id")
     )
     private List<Genre> genres = new ArrayList<>();
     private String isbn;
-    private String book_title;
-    private Integer published_year;
+    @Column(name="book_title")
+    private String bookTitle;
+    @Column(name="published_year")
+    private Integer publishedYear;
     private String publisher;
     private boolean virtual;
     private String cover;
     private String language;
     private Integer pages;
     private String description;
-    @OneToMany(orphanRemoval = true,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id")
+    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "bookInfo")
     private List<BookCopy> copies = new ArrayList<>();
 
    public void addCopy(BookCopy copy){
