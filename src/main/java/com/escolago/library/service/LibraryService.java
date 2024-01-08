@@ -130,10 +130,13 @@ public class LibraryService {
     public List<CopyDTO> saveNewCopies(long id,List<CopyDTO> list){
     List<BookCopy> copiesToSave = mapstructMapper.copyDTOtoCopy(list);
     copiesToSave.forEach(this::assignAssetId);
+    copiesToSave.forEach(copy -> copy.setBookInfo(this.bookInfoRepository.findById(id).get()));
     List<BookCopy> savedCopies = (List<BookCopy>) bookCopyRepository.saveAll(copiesToSave);
-    this.bookInfoRepository.findById(id).ifPresent(  book ->{
+    this.bookInfoRepository.findById(id).ifPresentOrElse(  book ->{
         book.addCopies(savedCopies);
         this.bookInfoRepository.save(book);
+            },()->{
+                throw new RuntimeException("Book not found");
             }
 
     );

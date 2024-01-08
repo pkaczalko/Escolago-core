@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import java.time.LocalDate;
 @Getter
@@ -35,6 +36,8 @@ public class BookCopy {
     private Asset assetId;
 
     @ManyToOne()
-    @JoinColumn(name="book_id")
+    @JsonBackReference
+    @ToStringExclude
+    @JoinColumn(name="book_id",nullable = false)
     private BookInfo bookInfo;
 }

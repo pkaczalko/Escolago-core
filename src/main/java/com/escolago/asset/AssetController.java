@@ -21,21 +21,12 @@ import java.util.List;
 @RestController
 public class AssetController {
     private final AssetRespository assetRespository;
-    private final BookInfoRepository bookInfoRepository;
-    private final BookCopyRepository bookCopyRepository;
-    private final ItemRepository itemRepository;
     private final MapStructMapper mapper;
     AssetController(
         AssetRespository assetRespository,
-        BookInfoRepository bookInfoRepository,
-        ItemRepository itemRepository,
-        BookCopyRepository bookCopyRepository,
         MapStructMapper mapper
     ){
         this.assetRespository = assetRespository;
-        this.bookInfoRepository = bookInfoRepository;
-        this.itemRepository = itemRepository;
-        this.bookCopyRepository = bookCopyRepository;
         this.mapper = mapper;
     }
 
@@ -61,7 +52,7 @@ public class AssetController {
     @GetMapping("assets/last")
     ResponseEntity<?> getLastAdded(){
         Pageable pageRequest =  PageRequest.of(0,5, Sort.by(Sort.Order.desc("id")));
-        return ResponseEntity.ok(this.getAssets(this.assetRespository.findAll(pageRequest).getContent()));
+        return ResponseEntity.ok(this.getAssets(this.assetRespository.findAllByBookIsNotNullOrItemIsNotNull(pageRequest).getContent()));
     }
 
 

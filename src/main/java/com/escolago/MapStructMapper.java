@@ -51,6 +51,8 @@ public interface MapStructMapper {
 
 
 
+
+
     @Mapping(target = "bookInfo", ignore = true)
     @Mapping(target = "rented", source = "_rented")
     @Mapping(target = "dateAdded", source = "date_added")

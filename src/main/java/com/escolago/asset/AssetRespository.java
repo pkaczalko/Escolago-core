@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AssetRespository extends CrudRepository<Asset, Long>, PagingAndSortingRepository<Asset,Long> {
     Page<Asset> findAllByBook_BookInfo_BookTitleContainsIgnoreCaseOrItem_NameContainingIgnoreCaseOrId(String book_bookInfo_bookTitle, String item_name,Long id, Pageable pageable);
-
+    Page<Asset> findAllByBookIsNotNullOrItemIsNotNull(Pageable pageable);
 }

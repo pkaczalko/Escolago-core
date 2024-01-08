@@ -25,7 +25,7 @@ public class Item {
     private String description;
     private LocalDate dateAdded;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "item_category_items",
             joinColumns = @JoinColumn(name = "items_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id", referencedColumnName = "id")

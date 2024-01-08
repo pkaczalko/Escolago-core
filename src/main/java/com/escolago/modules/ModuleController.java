@@ -13,6 +13,7 @@ public class ModuleController {
     ModuleController(ModuleRepository moduleRepository, MapStructMapper mapper){
         this.moduleRepository = moduleRepository;
         this.mapper = mapper;
+
     }
 
     @GetMapping("/modules")
