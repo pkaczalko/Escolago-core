@@ -105,6 +105,8 @@ insert into asset (module_id) values (1);
 
 
 Insert into "author"(name) values ('Michael Dobbs');
+Insert into "author"(name) values ('J.K. Rowling');
+Insert into "author"(name) values ('J.R.R. Tolkien');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 insert into "authors_of_book"(id_book, id_author) values (1,1);
 Insert into "generes_of_book"(book_id,genere_id) values(1,53);
@@ -121,21 +123,47 @@ UPDATE "book_copy" SET  is_rented = true ,"loan_id"=1  WHERE id = 6;
 
 
 
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191723','Harry Potter i Kamień Filozoficzny',1997,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377902.jpg','pl',320,'HARRY POTTER - SIEROTA I UCZEŃ SZKOŁY MAGII, KTÓRY STAWI CZOŁA LORDOWI VOLDEMORTOWI');
 
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
-Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191730','Harry Potter i Komnata Tajemnic',1998,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377903.jpg','pl',368,'HARRY POTTER - DRUGI ROK PRZYGÓD W HOGWARTCIE, PEŁNY NIEBEZPIECZEŃSTW I TAJEMNIC');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191747','Harry Potter i Więzień Azkabanu',1999,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377904.jpg','pl',480,'HARRY POTTER - TRZECI ROK NAUKI, W KTÓRYM ZMAGA SIĘ Z ZAGADKĄ UCIEKINIERA Z AZKABANU');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191754','Harry Potter i Czara Ognia',2000,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377905.jpg','pl',768,'HARRY POTTER - CZWARTY ROK PRZYGÓD, W KTÓRYM BIERZE UDZIAŁ W TURNIEJU TRZECH CZARODZIEI');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191761','Harry Potter i Zakon Feniksa',2003,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377906.jpg','pl',960,'HARRY POTTER - PIĄTY ROK NAUKI, W KTÓRYM STAJE DO WALKI Z LORDEN VOLDEMORTEM I JEGO ŚMIERCIORĘKAMI');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191778','Harry Potter i Książę Półkrwi',2005,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377907.jpg','pl',704,'HARRY POTTER - SZÓSTY ROK NAUKI, W KTÓRYM ODKRYWA TAJEMNICĘ PRZESZŁOŚCI LORDA VOLDEMORTA');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191785','Harry Potter i Insygnia Śmierci',2007,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377908.jpg','pl',704,'HARRY POTTER - OSTATNI TOM SAGI, W KTÓRYM ROZSTRZYGA SIĘ LOS ŚRODZIEMIA I WALKA Z LORDEN VOLDEMORTEM');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788371502438','Władca Pierścieni. Drużyna Pierścienia',1954,'Iskry',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377909.jpg','pl',544,'WŁADCA PIERŚCIENI - PIERWSZY TOM TRYLOGII, W KTÓRYM HOBBIT FRODO OTRZYMUJE OD SWEGO WUJKA BILBA MAGICZNY PIERŚCIEŃ I WYRUSZA W NIEBEZPIECZNĄ PODRÓŻ');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788371502445','Władca Pierścieni. Dwie Wieże',1954,'Iskry',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377910.jpg','pl',512,'WŁADCA PIERŚCIENI - DRUGI TOM TRYLOGII, W KTÓRYM DRUŻYNA PIERŚCIENIA ROZDZIELA SIĘ, A FRODO I SAM ZBLIŻAJĄ SIĘ DO MORDORU');
+
+Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788371502452','Władca Pierścieni. Powrót Króla',1955,'Iskry',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377911.jpg','pl',544,'WŁADCA PIERŚCIENI - TRZECI TOM TRYLOGII, W KTÓRYM ROZSTRZYGA SIĘ OSTATECZNA BITWA Z SAURONEM I JEGO WOJSKAMI');
+
+insert into "authors_of_book"(id_book, id_author) values (2,2);
+insert into "authors_of_book"(id_book, id_author) values (3,2);
+insert into "authors_of_book"(id_book, id_author) values (4,2);
+insert into "authors_of_book"(id_book, id_author) values (5,2);
+insert into "authors_of_book"(id_book, id_author) values (6,2);
+insert into "authors_of_book"(id_book, id_author) values (7,2);
+insert into "authors_of_book"(id_book, id_author) values (8,2);
+insert into "authors_of_book"(id_book, id_author) values (9,3);
+insert into "authors_of_book"(id_book, id_author) values (10,3);
+insert into "authors_of_book"(id_book, id_author) values (11,3);
+insert into "generes_of_book"(book_id,genere_id) values(2,13);
+insert into "generes_of_book"(book_id,genere_id) values(3,19);
+insert into "generes_of_book"(book_id,genere_id) values(4,19);
+insert into "generes_of_book"(book_id,genere_id) values(5,19);
+insert into "generes_of_book"(book_id,genere_id) values(6,19);
+insert into "generes_of_book"(book_id,genere_id) values(7,19);
+insert into "generes_of_book"(book_id,genere_id) values(8,19);
+insert into "generes_of_book"(book_id,genere_id) values(9,19);
+insert into "generes_of_book"(book_id,genere_id) values(10,19);
+insert into "generes_of_book"(book_id,genere_id) values(11,19);
+
 
 
 insert into "item_category"(name) values ('gra planszowa');

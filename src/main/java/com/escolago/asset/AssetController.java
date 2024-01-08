@@ -22,6 +22,7 @@ import java.util.List;
 public class AssetController {
     private final AssetRespository assetRespository;
     private final MapStructMapper mapper;
+
     AssetController(
         AssetRespository assetRespository,
         MapStructMapper mapper

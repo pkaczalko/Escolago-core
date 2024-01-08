@@ -60,11 +60,16 @@ public class BookController {
 
     @PostMapping("/{id}/addcopy")
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<?> addCopys(@PathVariable Long id, @RequestBody List<CopyDTO> copies){
+    ResponseEntity<?> addCopies(@PathVariable Long id, @RequestBody List<CopyDTO> copies){
         return ResponseEntity.ok(this.libraryService.saveNewCopies(id,copies));
     }
 
 
+    @PutMapping("/{id}/setlink")
+    ResponseEntity<?> setLink(@PathVariable Long id, @RequestBody String link){
+        this.libraryService.setCopyLink(id,link);
+        return ResponseEntity.ok("");
+    }
 
     @PutMapping("/rent/{user_id}")
     ResponseEntity<?> rentBook(@PathVariable Long user_id, @RequestBody CopyDTO copy){

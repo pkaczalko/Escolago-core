@@ -159,6 +159,13 @@ public class LibraryService {
         return mapstructMapper.bookCopyToBookCopyDTO(bookCopyRepository.save(copyToRent));
     }
 
+    public void setCopyLink(Long copy_id,String link){
+    this.bookCopyRepository.findById(copy_id).ifPresent(copy -> {
+        copy.setLink(link);
+        this.bookCopyRepository.save(copy);
+    });
+
+    }
 
     public CopyDTO returnCopy(Integer loan_id,CopyDTO copy){
         copy.setLoan(null);

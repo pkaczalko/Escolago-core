@@ -25,7 +25,7 @@ public class StorageService {
         this.fileDataRepository = fileDataRepository;
     }
 
-    private final String FOLDER = "C:\\Users\\Piotrek\\IdeaProjects\\escolago-core\\src\\main\\resources\\static\\images\\";
+    private final String FOLDER = "C:\\Users\\Piotrek\\IdeaProjects\\escolago-core\\src\\main\\resources\\static\\files\\";
 
 
     public String uploadFile(MultipartFile file,String asset_id) throws IOException {
