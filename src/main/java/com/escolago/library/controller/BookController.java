@@ -49,7 +49,6 @@ public class BookController {
             @PathVariable(value="id") long id
     ){
         return ResponseEntity.ok(libraryService.getBookById(id));
-
     }
 
 

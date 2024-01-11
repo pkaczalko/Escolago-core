@@ -20,7 +20,7 @@ public class ModuleController {
     ResponseEntity<?> getModules(){
         return ResponseEntity.ok(
                 mapper.modulesToDTO(
-                         this.moduleRepository.findAll()
+                        this.moduleRepository.findAll()
                 ));
     }
 

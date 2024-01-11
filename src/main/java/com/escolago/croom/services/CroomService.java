@@ -56,7 +56,8 @@ public class CroomService {
                 id = Long.parseLong(name);
             }catch (NumberFormatException ignored){}
             finally {
-                items = this.itemRepository.findAllByNameContainingIgnoreCaseOrKeywordsContainingIgnoreCaseOrDescriptionIsContainingIgnoreCaseOrCategories_nameContainingIgnoreCaseOrAssetId_idEquals(name,name,name,name,id,pageRequest);
+                items = this.itemRepository
+                        .findAllByNameContainingIgnoreCaseOrKeywordsContainingIgnoreCaseOrDescriptionIsContainingIgnoreCaseOrCategories_nameContainingIgnoreCaseOrAssetId_idEquals(name,name,name,name,id,pageRequest);
             }
         }
         else {
@@ -105,5 +106,4 @@ public Optional<ItemDTO> replaceItem(long id,ItemDTO item){
   public  void deleteItem(Long id){
         this.itemRepository.deleteById(id);
     }
-
 }

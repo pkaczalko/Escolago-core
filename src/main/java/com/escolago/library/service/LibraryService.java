@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,53 +66,57 @@ public class LibraryService {
 //            return this.bookInfoRepository.findAllByAuthors_nameContainingIgnoreCaseOrBookTitleContainingIgnoreCaseOrIsbnContainingIgnoreCaseOrGenres_nameContainingIgnoreCaseOrGenres_englishNameContainingIgnoreCaseOrCopies_assetId_idEquals(name, name, name, name, name, id);
 //    }
 
-    public PagedCatalogueResponseDTO getPageOfCatalogue(Pageable pageRequest,String name,String action){
+    public PagedCatalogueResponseDTO getPageOfCatalogue(
+            Pageable pageRequest,String name,String action){
         Page<BookInfo> catalogue;
         switch (action){
             case "asset": {
                 long id = -1L;
-                try {
-                    id = Long.parseLong(name);
-                    } catch (NumberFormatException ignored) {
-                    } finally {
-                        catalogue = this.bookInfoRepository.findAllByCopies_assetId_id(id, pageRequest);
-                        }
+                try {id = Long.parseLong(name);} catch (NumberFormatException ignored) {}
+                finally {catalogue = this.bookInfoRepository
+                        .findAllByCopies_assetId_id(id, pageRequest);}
             }break;
-
-            case "author":
+            case "author":{catalogue = this.bookInfoRepository
+                    .findAllByAuthors_nameContainingIgnoreCase(name,pageRequest);}break;
             case "genre":{
-                catalogue = this.bookInfoRepository.findAllByAuthors_nameContainingIgnoreCaseOrGenres_nameContainingIgnoreCase(name,name, pageRequest);
+                catalogue = this.bookInfoRepository
+                        .findAllByGenres_nameContainingIgnoreCase(name, pageRequest);
             }break;
-            case "title":
-            case "isbn":
-                catalogue = this.bookInfoRepository.findAllByBookTitleContainingIgnoreCaseOrIsbnContainingIgnoreCase(name,name,pageRequest);
-            break;
+            case "title": {catalogue = this.bookInfoRepository
+                    .findAllByBookTitleContainingIgnoreCase(name, pageRequest); }break;
+            case "isbn": {
+                catalogue = this.bookInfoRepository
+                        .findAllByIsbnContainingIgnoreCase(name, pageRequest);
+            }break;
             default:{
                 catalogue = this.bookInfoRepository.findAll(pageRequest);
             }break;
         }
-
-
         PagedCatalogueResponseDTO response = new PagedCatalogueResponseDTO();
         response.setTotalCount(catalogue.getTotalElements());
-        response.setCatalogue(mapstructMapper.booksInfoToShortDTO(catalogue.getContent()));
+        response.setCatalogue(mapstructMapper.booksInfoToShortDTO(
+                catalogue.getContent()));
         return response;
-
     }
 
 
    public Optional<BookInfoDTO> getBookById(Long id){
-       return bookInfoRepository.findById(id).map(mapstructMapper::bookInfoToBookInfoDTO);
-
+       return bookInfoRepository.findById(id)
+               .map(mapstructMapper::bookInfoToBookInfoDTO);
     }
+
+
+
 
 
     public Optional<BookInfoDTO> replaceBookInfo(Long id,BookInfoDTO bookInfoDTO){
-    if(!bookInfoRepository.existsById(id)){
-        return Optional.empty();
-    }
+    BookInfo book = this.bookInfoRepository.findById(id).orElse(null);
+    if(book == null){return Optional.empty();}
     bookInfoDTO.setId(id);
-    BookInfo bookToUpdate = mapstructMapper.bookInfoDTOToBookInfo(bookInfoDTO);
+    BookInfo bookToUpdate = mapstructMapper.bookInfoDTOToBookInfo(bookInfoDTO);;
+    bookToUpdate.setAuthors(this.findAuthors(bookToUpdate.getAuthors()));
+    bookToUpdate.setGenres(this.findGenres(bookToUpdate.getGenres()));
+    bookToUpdate.setCopies(book.getCopies());
     BookInfo updatedBook = bookInfoRepository.save(bookToUpdate);
     return Optional.of(mapstructMapper.bookInfoToBookInfoDTO(updatedBook));
     }
@@ -135,23 +140,18 @@ public class LibraryService {
     this.bookInfoRepository.findById(id).ifPresentOrElse(  book ->{
         book.addCopies(savedCopies);
         this.bookInfoRepository.save(book);
-            },()->{
-                throw new RuntimeException("Book not found");
-            }
-
-    );
+        },()->{throw new RuntimeException("Book not found");});
         return mapstructMapper.bookCopyToBookCopyDTO(savedCopies);
     }
 
 
 
     public CopyDTO rentACopy(Long user_id,CopyDTO copy){
-        BookCopy copyToRent = mapstructMapper.copyDTOtoCopy(copy);
+        BookCopy copyToRent = this.bookCopyRepository.findById(copy.getId()).orElse(null);
         User userData = this.userRepository.findById(user_id).orElse(null);
             if(userData == null){
                 return null;
             }
-
         Loan loanInfo = new Loan(copyToRent,userData);
         this.loanRepository.save(loanInfo);
         copyToRent.setRented(true);
@@ -168,9 +168,9 @@ public class LibraryService {
     }
 
     public CopyDTO returnCopy(Integer loan_id,CopyDTO copy){
-        copy.setLoan(null);
-        copy.set_rented(false);
-        BookCopy copyToReturn = mapstructMapper.copyDTOtoCopy(copy);
+        BookCopy copyToReturn = this.bookCopyRepository.findById(copy.getId()).get();
+        copyToReturn.setLoan(null);
+        copyToReturn.setRented(false);
         bookCopyRepository.save(copyToReturn);
         loanRepository.deleteById(loan_id);
 
@@ -180,6 +180,7 @@ public class LibraryService {
     public void deleteCopy(Long copy_id){
         bookCopyRepository.deleteById(copy_id);
     }
+
 
     public List<?> rentals(long id){
     return this.userRepository.findById(id).get().getBorrowedBooks();
@@ -213,8 +214,9 @@ public class LibraryService {
     if(this.bookInfoRepository.findBookInfoByIsbn(newBook.getIsbn()).isPresent()){
         throw new BookAlreadyExistsException("Book already exists");
     }
-    newBook.setAuthors(this.findAuthors(newBook.getAuthors()));
-    newBook.setGenres(this.findGenres(newBook.getGenres()));
+    newBook.setAuthors((List<Author>) this.authorRepository.saveAll(this.findAuthors(newBook.getAuthors())));
+    newBook.setGenres((List<Genre>) this.genreRepository.saveAll(this.findGenres(newBook.getGenres())));
+
     return this.mapstructMapper.bookInfoToBookInfoDTO(this.bookInfoRepository.save(newBook));
     }
 

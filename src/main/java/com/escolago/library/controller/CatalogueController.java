@@ -24,14 +24,17 @@ public class CatalogueController {
 
 
     @GetMapping
-     ResponseEntity<?> getPageOfCatalogue(@RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "10") int limit,
-                                          @RequestParam(defaultValue = "id") String sortBy,
-                                          @RequestParam(defaultValue = "") String search,
-                                          @RequestParam(defaultValue = "") String action){
+     ResponseEntity<?> getPageOfCatalogue(
+             @RequestParam(defaultValue = "0") int page,
+             @RequestParam(defaultValue = "10") int limit,
+             @RequestParam(defaultValue = "id") String sortBy,
+             @RequestParam(defaultValue = "") String search,
+             @RequestParam(defaultValue = "") String action){
         Pageable pageRequest =  PageRequest.of(page,limit,Sort.by(sortBy));
         search =  search.replace('+',' ');
-        return ResponseEntity.ok(libraryService.getPageOfCatalogue(pageRequest,search,action));
+        return ResponseEntity.ok(
+                libraryService
+                        .getPageOfCatalogue(pageRequest,search,action));
 
         }
 

@@ -41,9 +41,9 @@ public class AssetController {
         try{
             id = Long.parseLong(search);
         }catch (NumberFormatException ignored){}
-
         Pageable pageRequest =  PageRequest.of(page,limit, Sort.by(sortBy));
-        Page<Asset> pageAsset = this.assetRespository.findAllByBook_BookInfo_BookTitleContainsIgnoreCaseOrItem_NameContainingIgnoreCaseOrId(search,search,id,pageRequest);
+        Page<Asset> pageAsset = this.assetRespository
+                .findAllByBook_BookInfo_BookTitleContainsIgnoreCaseOrItem_NameContainingIgnoreCaseOrId(search,search,id,pageRequest);
         List<JoinAssetsDTO> allAssets = this.getAssets(pageAsset.getContent());
         AssetPagedResponse response = new AssetPagedResponse(pageAsset.getTotalElements(), allAssets);
         return ResponseEntity.ok(response);
@@ -52,8 +52,13 @@ public class AssetController {
 
     @GetMapping("assets/last")
     ResponseEntity<?> getLastAdded(){
-        Pageable pageRequest =  PageRequest.of(0,5, Sort.by(Sort.Order.desc("id")));
-        return ResponseEntity.ok(this.getAssets(this.assetRespository.findAllByBookIsNotNullOrItemIsNotNull(pageRequest).getContent()));
+        Pageable pageRequest =  PageRequest.of(0,5,
+                Sort.by(
+                        Sort.Order.desc("id")));
+        return ResponseEntity.ok(this.
+                getAssets(this.assetRespository
+                        .findAllByBookIsNotNullOrItemIsNotNull(pageRequest)
+                        .getContent()));
     }
 
 

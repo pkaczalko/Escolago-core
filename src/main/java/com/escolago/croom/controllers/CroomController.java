@@ -20,7 +20,10 @@ public class CroomController {
     }
 
     @GetMapping
-    ResponseEntity<?> getItems(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "id") String sortBy, @RequestParam(defaultValue = "") String search) {
+    ResponseEntity<?> getItems(@RequestParam(defaultValue = "0") int page,
+                               @RequestParam(defaultValue = "10") int limit,
+                               @RequestParam(defaultValue = "id") String sortBy,
+                               @RequestParam(defaultValue = "") String search) {
         Pageable pageRequest = PageRequest.of(page, limit, Sort.by(sortBy));
         search = search.replace('+', ' ');
         return ResponseEntity.ok(this.croomService.getPageOfItems(pageRequest, search));

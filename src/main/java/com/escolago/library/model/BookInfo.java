@@ -18,15 +18,15 @@ public class BookInfo {
     private long id;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
  @JoinTable(name = "authors_of_book",
          joinColumns = @JoinColumn(name = "id_book", referencedColumnName = "id"),
          inverseJoinColumns = @JoinColumn(name = "id_author", referencedColumnName = "id")
  )
     private List<Author> authors = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "generes_of_book",
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(name = "genres_of_book",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "genere_id", referencedColumnName = "id")
     )

@@ -8,8 +8,8 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    url: jdbc:h2:mem:test;MODE=Postgresql;DATABASE_TO_LOWER=TRUE;
-#    url: jdbc:postgresql://localhost:5432/Escolago2
-#    username: postgres
-#    password: 123
-#    driver-class-name: org.postgresql.Driver
+#   url: jdbc:h2:mem:test;MODE=Postgresql;DATABASE_TO_LOWER=TRUE;
+    url: jdbc:postgresql://localhost:5432/EscolagoF
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver

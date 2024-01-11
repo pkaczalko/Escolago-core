@@ -1,7 +1,3 @@
-
-INSERT INTO "modules"(name,link) VALUES ('Biblioteka','/library');
-INSERT INTO "modules"(name,link) VALUES ('Świetlica','/croom');
-
 INSERT INTO "genre"(name,english_name) VALUES ('liryka','lyric');
 INSERT INTO "genre"(name,english_name) VALUES ('elegia','elegy');
 INSERT INTO "genre"(name,english_name) VALUES ('hymn','hymn');
@@ -90,6 +86,9 @@ INSERT INTO "genre"(name,english_name) VALUES ('turystyka','tourism');
 INSERT INTO "genre"(name,english_name) VALUES ('mapy','maps');
 INSERT INTO "genre"(name,english_name) VALUES ('atlasy','atlases');
 
+INSERT INTO "modules"(name,link) VALUES ('Biblioteka','/library');
+INSERT INTO "modules"(name,link) VALUES ('Świetlica','/croom');
+
 insert into "users"(login, name, surname, role) values ('admin','Tomasz','Administracyjny','{"role": {"job":"administrator", "admin":true, "module":[]}}');
 insert into "users"(login, name, surname, role) values ('BibAneta','Aneta','Biblioteczna','{"role": {"job":"bibliotekarz", "admin":false, "module":[1]}}');
 insert into "users"(login, name, surname, role) values ('LanBartosz','Bartosz','Langare','{"role": {"job":"wychowawca świetlicy", "admin":false, "module":[2]}}');
@@ -109,9 +108,9 @@ Insert into "author"(name) values ('J.K. Rowling');
 Insert into "author"(name) values ('J.R.R. Tolkien');
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788324026555','House of Cards Bezwzgledna gra o wladze',2015,'Społeczny Instytut Wydawniczy Znak',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377898.jpg','pl',416,'HOUSE OF CARDS - KTO ROZDAJE KARTY NA NAJWYZSZYCH SZCZEBLACH WLADZY?');
 insert into "authors_of_book"(id_book, id_author) values (1,1);
-Insert into "generes_of_book"(book_id,genere_id) values(1,53);
-Insert into "generes_of_book"(book_id,genere_id) values(1,13);
-Insert into "generes_of_book"(book_id,genere_id) values(1,19);
+Insert into "genres_of_book"(book_id,genere_id) values(1,53);
+Insert into "genres_of_book"(book_id,genere_id) values(1,13);
+Insert into "genres_of_book"(book_id,genere_id) values(1,19);
 insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',1);
 insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',2);
 insert into "book_copy"(book_id, is_rented, date_added, asset_id) values (1,false,'2020-01-01',3);
@@ -124,23 +123,14 @@ UPDATE "book_copy" SET  is_rented = true ,"loan_id"=1  WHERE id = 6;
 
 
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191723','Harry Potter i Kamień Filozoficzny',1997,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377902.jpg','pl',320,'HARRY POTTER - SIEROTA I UCZEŃ SZKOŁY MAGII, KTÓRY STAWI CZOŁA LORDOWI VOLDEMORTOWI');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191730','Harry Potter i Komnata Tajemnic',1998,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377903.jpg','pl',368,'HARRY POTTER - DRUGI ROK PRZYGÓD W HOGWARTCIE, PEŁNY NIEBEZPIECZEŃSTW I TAJEMNIC');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191747','Harry Potter i Więzień Azkabanu',1999,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377904.jpg','pl',480,'HARRY POTTER - TRZECI ROK NAUKI, W KTÓRYM ZMAGA SIĘ Z ZAGADKĄ UCIEKINIERA Z AZKABANU');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191754','Harry Potter i Czara Ognia',2000,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377905.jpg','pl',768,'HARRY POTTER - CZWARTY ROK PRZYGÓD, W KTÓRYM BIERZE UDZIAŁ W TURNIEJU TRZECH CZARODZIEI');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191761','Harry Potter i Zakon Feniksa',2003,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377906.jpg','pl',960,'HARRY POTTER - PIĄTY ROK NAUKI, W KTÓRYM STAJE DO WALKI Z LORDEN VOLDEMORTEM I JEGO ŚMIERCIORĘKAMI');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191778','Harry Potter i Książę Półkrwi',2005,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377907.jpg','pl',704,'HARRY POTTER - SZÓSTY ROK NAUKI, W KTÓRYM ODKRYWA TAJEMNICĘ PRZESZŁOŚCI LORDA VOLDEMORTA');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788373191785','Harry Potter i Insygnia Śmierci',2007,'Media Rodzina',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377908.jpg','pl',704,'HARRY POTTER - OSTATNI TOM SAGI, W KTÓRYM ROZSTRZYGA SIĘ LOS ŚRODZIEMIA I WALKA Z LORDEN VOLDEMORTEM');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788371502438','Władca Pierścieni. Drużyna Pierścienia',1954,'Iskry',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377909.jpg','pl',544,'WŁADCA PIERŚCIENI - PIERWSZY TOM TRYLOGII, W KTÓRYM HOBBIT FRODO OTRZYMUJE OD SWEGO WUJKA BILBA MAGICZNY PIERŚCIEŃ I WYRUSZA W NIEBEZPIECZNĄ PODRÓŻ');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788371502445','Władca Pierścieni. Dwie Wieże',1954,'Iskry',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377910.jpg','pl',512,'WŁADCA PIERŚCIENI - DRUGI TOM TRYLOGII, W KTÓRYM DRUŻYNA PIERŚCIENIA ROZDZIELA SIĘ, A FRODO I SAM ZBLIŻAJĄ SIĘ DO MORDORU');
-
 Insert into "book_info"(isbn, book_title, published_year, publisher, virtual, cover, language, pages, description) values ('9788371502452','Władca Pierścieni. Powrót Króla',1955,'Iskry',false,'https://ia802805.us.archive.org/view_archive.php?archive=/35/items/covers_0009/covers_0009_37.zip&file=0009377911.jpg','pl',544,'WŁADCA PIERŚCIENI - TRZECI TOM TRYLOGII, W KTÓRYM ROZSTRZYGA SIĘ OSTATECZNA BITWA Z SAURONEM I JEGO WOJSKAMI');
 
 insert into "authors_of_book"(id_book, id_author) values (2,2);
@@ -153,45 +143,74 @@ insert into "authors_of_book"(id_book, id_author) values (8,2);
 insert into "authors_of_book"(id_book, id_author) values (9,3);
 insert into "authors_of_book"(id_book, id_author) values (10,3);
 insert into "authors_of_book"(id_book, id_author) values (11,3);
-insert into "generes_of_book"(book_id,genere_id) values(2,13);
-insert into "generes_of_book"(book_id,genere_id) values(3,19);
-insert into "generes_of_book"(book_id,genere_id) values(4,19);
-insert into "generes_of_book"(book_id,genere_id) values(5,19);
-insert into "generes_of_book"(book_id,genere_id) values(6,19);
-insert into "generes_of_book"(book_id,genere_id) values(7,19);
-insert into "generes_of_book"(book_id,genere_id) values(8,19);
-insert into "generes_of_book"(book_id,genere_id) values(9,19);
-insert into "generes_of_book"(book_id,genere_id) values(10,19);
-insert into "generes_of_book"(book_id,genere_id) values(11,19);
+
+insert into "genres_of_book"(book_id,genere_id) values(2,27);
+insert into "genres_of_book"(book_id,genere_id) values(2,55);
+insert into "genres_of_book"(book_id,genere_id) values(2,13);
+insert into "genres_of_book"(book_id,genere_id) values(3,55);
+insert into "genres_of_book"(book_id,genere_id) values(3,27);
+insert into "genres_of_book"(book_id,genere_id) values(3,13);
+insert into "genres_of_book"(book_id,genere_id) values(4,13);
+insert into "genres_of_book"(book_id,genere_id) values(4,27);
+insert into "genres_of_book"(book_id,genere_id) values(5,13);
+insert into "genres_of_book"(book_id,genere_id) values(5,19);
+insert into "genres_of_book"(book_id,genere_id) values(4,55);
+insert into "genres_of_book"(book_id,genere_id) values(5,27);
+insert into "genres_of_book"(book_id,genere_id) values(6,19);
+insert into "genres_of_book"(book_id,genere_id) values(4,19);
+insert into "genres_of_book"(book_id,genere_id) values(6,13);
+insert into "genres_of_book"(book_id,genere_id) values(6,27);
+insert into "genres_of_book"(book_id,genere_id) values(6,33);
+insert into "genres_of_book"(book_id,genere_id) values(7,13);
+insert into "genres_of_book"(book_id,genere_id) values(7,19);
+insert into "genres_of_book"(book_id,genere_id) values(7,27);
+insert into "genres_of_book"(book_id,genere_id) values(8,27);
+insert into "genres_of_book"(book_id,genere_id) values(8,33);
+insert into "genres_of_book"(book_id,genere_id) values(8,19);
+insert into "genres_of_book"(book_id,genere_id) values(7,33);
+insert into "genres_of_book"(book_id,genere_id) values(8,13);
+insert into "genres_of_book"(book_id,genere_id) values(9,13);
+insert into "genres_of_book"(book_id,genere_id) values(9,27);
+insert into "genres_of_book"(book_id,genere_id) values(9,38);
+insert into "genres_of_book"(book_id,genere_id) values(10,38);
+insert into "genres_of_book"(book_id,genere_id) values(10,27);
+insert into "genres_of_book"(book_id,genere_id) values(10,13);
+insert into "genres_of_book"(book_id,genere_id) values(11,38);
+insert into "genres_of_book"(book_id,genere_id) values(11,27);
+insert into "genres_of_book"(book_id,genere_id) values(11,13);
 
 
+
+
+
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
+insert into asset (module_id) values(2);
 
 insert into "item_category"(name) values ('gra planszowa');
 insert into "item_category"(name) values ('książka');
 insert into "item_category"(name) values ('film');
-insert into "item_category"(name) values ('kość');
+insert into "item_category"(name) values ('rysowanka');
+insert into "item_category"(name) values ('karty');
+insert into "item_category"(name) values ('puzzle');
 
-insert into asset (module_id) values(2);
-insert into asset (module_id) values(2);
-insert into asset (module_id) values(2);
-insert into asset (module_id) values(2);
-insert into asset (module_id) values(2);
-insert into asset (module_id) values(2);
-
-insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',7,'gra','gra,planszowa,monopol','monopol-gra planszowa');
-insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',8,'gra','gra,planszowa,monopol','monopol-gra planszowa');
-insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',9,'gra','gra,planszowa,monopol','monopol-gra planszowa');
-insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',10,'gra','gra,planszowa,monopol','monopol-gra planszowa');
-insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',11,'gra','gra,planszowa,monopol','monopol-gra planszowa');
-insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',12,'gra','gra,planszowa,monopol','monopol-gra planszowa');
+insert into item(date_added,asset_id,description,keywords,name,link) values('2022-01-01',7,'Gra planszowa, brakuje 2 pionków','gra planszowa,gra,Monopol','Eurobusiness','https://i.ebayimg.com/images/g/iSgAAOSwqu9VJVJU/s-l1600.jpg');
+insert into item(date_added,asset_id,description,keywords,name,link) values('2022-01-01',8,'Film z Lukiem Skywalkerem','film,komedia,gwiezdne wojny,dvd','Imperium kontratakuje','https://a.allegroimg.com/original/1ee80f/64c69eca4c2fb67b6eae630af0e4');
+insert into item(date_added,asset_id,description,keywords,name,link) values('2022-01-01',9,'Kolorowanka','kolorowanka,rysowanie','kolorowanka psi patrol','https://a.allegroimg.com/original/1e4351/fb243acb4c0894483aa2a3989ce6');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',10,'Gra planszowa','gra,chińczyk','gra chińczyk');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',11,'Brakuje białej wieży','szachy','Szachy');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',12,'','karty','Karty do gry');
+insert into item(date_added,asset_id,description,keywords,name) values('2022-01-01',13,'','puzzle','Puzzle');
 
 insert into item_category_items(categories_id,items_id) values (1,1);
-insert into item_category_items(categories_id,items_id) values (1,2);
-insert into item_category_items(categories_id,items_id) values (1,3);
+insert into item_category_items(categories_id,items_id) values (3,2);
+insert into item_category_items(categories_id,items_id) values (4,3);
 insert into item_category_items(categories_id,items_id) values (1,4);
 insert into item_category_items(categories_id,items_id) values (1,5);
-insert into item_category_items(categories_id,items_id) values (1,6);
-insert into item_category_items(categories_id,items_id) values (3,2);
-insert into item_category_items(categories_id,items_id) values (2,5);
-insert into item_category_items(categories_id,items_id) values (2,3);
+insert into item_category_items(categories_id,items_id) values (5,6);
+insert into item_category_items(categories_id,items_id) values (6,7);
 

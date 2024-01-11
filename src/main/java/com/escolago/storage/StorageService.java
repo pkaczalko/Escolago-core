@@ -26,8 +26,6 @@ public class StorageService {
     }
 
     private final String FOLDER = "C:\\Users\\Piotrek\\IdeaProjects\\escolago-core\\src\\main\\resources\\static\\files\\";
-
-
     public String uploadFile(MultipartFile file,String asset_id) throws IOException {
         String fileName = URLEncoder.encode(Objects.requireNonNull(file.getOriginalFilename()), StandardCharsets.UTF_8);
         String LocalFilePath = FOLDER+asset_id+'\\'+fileName;
@@ -39,11 +37,9 @@ public class StorageService {
                 System.out.println("Utworzono folder: " + LocalFilePath);
             } else {
                 System.out.println("Folder "+LocalFilePath+" już istnieje.");
-            }
-        } catch (Exception e) {
+            }} catch (Exception e) {
             e.printStackTrace();
         }
-
         FileData fileData = fileDataRepository.findByName(file.getOriginalFilename())
                 .orElse(FileData.builder()
                              .name(file.getOriginalFilename())
@@ -51,18 +47,12 @@ public class StorageService {
                              .RemotePath(RemoteFilePath)
                              .LocalPath(LocalFilePath)
                              .build());
-
-
-
         try {
             file.transferTo(new File(LocalFilePath));
             return fileDataRepository.save(fileData).getRemotePath();
-
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        return null;
+        }return null;
     }
 
 

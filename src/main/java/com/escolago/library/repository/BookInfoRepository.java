@@ -15,9 +15,14 @@ import java.util.Optional;
 public interface BookInfoRepository extends PagingAndSortingRepository<BookInfo,Long>, CrudRepository<BookInfo,Long> {
 
     Optional<BookInfo> findBookInfoByIsbn(String isbn);
-    Page<BookInfo> findAllByBookTitleContainingIgnoreCaseOrIsbnContainingIgnoreCase(String bookTitle, String isbn, Pageable pageable);
 
-    Page<BookInfo> findAllByAuthors_nameContainingIgnoreCaseOrGenres_nameContainingIgnoreCase(String authors_name, String genres_name, Pageable pageable);
+    Page<BookInfo> findAllByBookTitleContainingIgnoreCase(String bookTitle, Pageable pageable);
+
+    Page<BookInfo> findAllByIsbnContainingIgnoreCase(String isbn, Pageable pageable);
+
+    Page<BookInfo> findAllByAuthors_nameContainingIgnoreCase(String authors_name, Pageable pageable);
+
+    Page<BookInfo> findAllByGenres_nameContainingIgnoreCase(String genres_name, Pageable pageable);
 
     Page<BookInfo> findAllByCopies_assetId_id(long copies_assetId_id, Pageable pageable);
 
